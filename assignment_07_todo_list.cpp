@@ -79,4 +79,69 @@
 #include <vector>
 #include <string>
 using namespace std;
+// Store tasks in a vector
+vector<string> tasks;
+
+void addTask() {
+    string task;
+    cout << "Enter task: ";
+    cin.ignore();
+    getline(cin, task);
+    tasks.push_back(task);
+    cout << "Task added: \"" << task << "\"" << endl;
+}
+
+void viewTasks() {
+    if (tasks.empty()) {
+        cout << "No tasks yet! Your list is empty." << endl;
+    } else {
+        cout << "Your Tasks:" << endl;
+        for (int i = 0; i < tasks.size(); i++) {
+            cout << i + 1 << ". " << tasks[i] << endl;
+        }
+    }
+}
+
+void deleteTask() {
+    if (tasks.empty()) {
+        cout << "No tasks to delete!" << endl;
+        return;
+    }
+    viewTasks();
+    int num;
+ cout << "Enter task number to delete: ";
+    cin >> num;
+    if (num < 1 || num > tasks.size()) {
+        cout << "Error: Invalid task number." << endl;
+    } else {
+        string removed = tasks[num - 1];
+        tasks.erase(tasks.begin() + num - 1);
+        cout << "Task \"" << removed << "\" has been removed." << endl;
+    }
+}
+
+int main() {
+    int choice;
+    do {
+        cout << "\n=============================" << endl;
+        cout << "       TO-DO LIST MENU       " << endl;
+        cout << "=============================" << endl;
+        cout << "1. Add task" << endl;
+        cout << "2. View tasks" << endl;
+        cout << "3. Delete task" << endl;
+        cout << "4. Quit" << endl;
+        cout << "Enter your choice (1-4): ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: addTask();   break;
+            case 2: viewTasks(); break;
+            case 3: deleteTask(); break;
+            case 4: cout << "Goodbye!" << endl; break;
+            default: cout << "Error: Invalid choice. Please enter 1-4." << endl;
+        }
+    } while (choice != 4);
+
+    return 0;
+}
 
