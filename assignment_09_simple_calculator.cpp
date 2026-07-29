@@ -72,4 +72,114 @@
 #include <iomanip>
 #include <cmath>
 using namespace std;
+double add(double a, double b) {
+    return a + b;
+}
+
+double subtract(double a, double b) {
+    return a - b;
+}
+
+double multiply(double a, double b) {
+    return a * b;
+}
+
+double divide(double a, double b) {
+    if (b == 0) {
+        cout << "Error: Cannot divide by zero." << endl;
+        return 0;
+    }
+    return a / b;
+}
+
+double modulus(double a, double b) {
+    if (b == 0) {
+        cout << "Error: Cannot divide by zero." << endl;
+        return 0;
+    }
+    return fmod(a, b);
+}
+
+double exponentiate(double a, double b) {
+    return pow(a, b);
+}
+
+void getNumbers(double& a, double& b) {
+    cout << "Enter first number: ";
+    cin >> a;
+    cout << "Enter second number: ";
+    cin >> b;
+}
+
+int main() {
+    int choice;
+    do {
+        cout << "\n==============================" << endl;
+        cout << "       SIMPLE CALCULATOR      " << endl;
+        cout << "==============================" << endl;
+        cout << "1. Addition" << endl;
+        cout << "2. Subtraction" << endl;
+        cout << "3. Multiplication" << endl;
+        cout << "4. Division" << endl;
+        cout << "5. Modulus" << endl;
+        cout << "6. Exponentiation" << endl;
+        cout << "7. Quit" << endl;
+        cout << "Select an operation (1-7): ";
+        cin >> choice;
+
+        if (choice == 7) {
+            cout << "Goodbye!" << endl;
+            break;
+        }
+
+        double a, b, result;
+        string op;
+
+        switch (choice) {
+            case 1:
+                getNumbers(a, b);
+                result = add(a, b);
+                op = "+";
+                break;
+            case 2:
+                getNumbers(a, b);
+                result = subtract(a, b);
+                op = "-";
+                break;
+            case 3:
+                getNumbers(a, b);
+                result = multiply(a, b);
+                op = "*";
+                break;
+            case 4:
+                getNumbers(a, b);
+                if (b == 0) continue;
+                result = divide(a, b);
+                op = "/";
+                break;
+            case 5:
+                getNumbers(a, b);
+                if (b == 0) continue;
+                result = modulus(a, b);
+                op = "%";
+                break;
+            case 6:
+                getNumbers(a, b);
+                result = exponentiate(a, b);
+                op = "^";
+                break;
+            default:
+                cout << "Error: Invalid choice. Enter 1-7." << endl;
+                continue;
+        }
+
+        cout << fixed << setprecision(2);
+        cout << "Result: " << a << " " << op << " " << b
+             << " = " << result << endl;
+
+    } while (choice != 7);
+
+    return 0;
+}
+
 
